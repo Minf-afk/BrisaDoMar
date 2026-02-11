@@ -54,6 +54,7 @@ void ExibirCardapio()
         Console.WriteLine($"{i} | {item.Nome} - {item.Descricao} - R$ {item.Preco}");
         i++;
     }
+    Console.Clear();
 }
 void AdicionarProduto()
 {
@@ -63,6 +64,7 @@ void AdicionarProduto()
         Console.WriteLine("Mesa inválida");
         return;
     }
+    Console.Clear();
 
     ExibirCardapio();
 
@@ -72,6 +74,13 @@ void AdicionarProduto()
         Console.WriteLine("Item inválido");
         return;
     }
+    Console.Clear();
 
-    Console.WriteLine("");
+    Console.WriteLine("\nQuantidade: ");
+    if (!int.TryParse(Console.ReadLine(), out int qtd) || qtd <= 0)
+    {
+        Console.WriteLine("Quantidade inválida");
+        return;
+    }
+    Console.Clear();
 }
