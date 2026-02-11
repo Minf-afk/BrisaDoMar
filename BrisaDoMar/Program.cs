@@ -21,7 +21,7 @@ var restaurante = new Restaurante
 
 while (opcao != 4) { 
 
-    Console.WriteLine($"Bem vindo ao {restaurante.NomeRestaurante}");
+    Console.WriteLine($"Bem vindo ao {restaurante.NomeRestaurante}\n");
 
     Console.WriteLine("Digite 1 para ver o Cardápio: \n");
     Console.WriteLine("Digite 2 para adicionar um produto ao pedido: \n");
@@ -41,7 +41,8 @@ while (opcao != 4) {
         case 3:
             MostrarPedido();
             break;
-        case 4:
+        case 4: 
+            SairDoApp();
             break;
         default:
             break;
@@ -133,4 +134,9 @@ void MostrarPedido()
         Console.WriteLine($"{itens.Quantidade} x {itens.Item.Nome} - R$ {itens.Total:F2}");
     }
     Console.WriteLine($"Total: {mesa.ValorDaMesa:F2}");
+}
+void SairDoApp()
+{
+    opcao = 4;
+    Console.WriteLine("Saindo ...");
 }
