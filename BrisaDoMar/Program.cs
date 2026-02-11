@@ -48,13 +48,13 @@ while (opcao != 4) {
 void ExibirCardapio()
 {
     Console.WriteLine("---Cardápio---");
+    int i = 1;
+
     foreach (var item in restaurante.Cardapio)
     {
-        int i = 1;
-        Console.WriteLine($"{i} | {item.Nome} - {item.Descricao} - R$ {item.Preco}");
+        Console.WriteLine($"{i} | {item.Nome} - {item.Descricao} - R$ {item.Preco:F2}");
         i++;
     }
-    Console.Clear();
 }
 void AdicionarProduto()
 {
@@ -83,4 +83,9 @@ void AdicionarProduto()
         return;
     }
     Console.Clear();
+
+    var itemEscolhido = restaurante.Cardapio[escolha - 1];
+
+    
+    
 }
