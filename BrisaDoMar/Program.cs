@@ -33,10 +33,13 @@ while (opcao != 4) {
     switch (opcao)
     {
         case 1:
+            ExibirCardapio();
             break;
         case 2:
+            AdicionarProduto();
             break;
         case 3:
+            MostrarPedido();
             break;
         case 4:
             break;
@@ -66,6 +69,12 @@ void AdicionarProduto()
     }
     Console.Clear();
 
+    var mesa = restaurante.Mesas.FirstOrDefault(m => m.NumeroMesa == numeroMesa);
+    if (mesa == null)
+    {
+        Console.WriteLine("Mesa não existe.");
+        return;
+    }
     ExibirCardapio();
 
     Console.WriteLine("\n Digite o item: ");
@@ -86,6 +95,42 @@ void AdicionarProduto()
 
     var itemEscolhido = restaurante.Cardapio[escolha - 1];
 
-    
-    
+    mesa.Pedidos.Add(new Pedido
+    {
+        Item = itemEscolhido,
+        Quantidade = qtd
+    });
+
+    Console.WriteLine($"\nAdicionado: {qtd}x {itemEscolhido.Nome} na mesa {mesa.NumeroMesa}.");
+}
+
+void MostrarPedido()
+{
+    Console.WriteLine("\nNúmero da Mesa: ");
+    if (!int.TryParse(Console.ReadLine(), out int numeroMesa)) ;
+    {
+        Console.WriteLine("Mesa inválida");
+        return;
+    }
+
+    var mesa = restaurante.Mesas.FirstOrDefault(m => m.NumeroMesa == numeroMesa);
+    if(mesa == null)
+    {
+        Console.WriteLine("Mesa não existe");
+        return;
+    }
+
+    Console.WriteLine($"\n --- Conta da Mesa: {mesa.NumeroMesa}");
+
+    if(mesa.Pedidos.Count == 0)
+    {
+        Console.WriteLine("Nenhum pedido feito ainda !");
+        return;
+    }
+
+    foreach (var itens in mesa.Pedidos)
+    {
+        Console.WriteLine($"{itens.Quantidade} x {itens.Item.Nome} - R$ {itens.Total:F2}");
+    }
+    Console.WriteLine($"Total: {mesa.ValorDaMesa:F2}");
 }
