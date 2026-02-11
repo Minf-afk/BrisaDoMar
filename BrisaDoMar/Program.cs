@@ -107,7 +107,7 @@ void AdicionarProduto()
 void MostrarPedido()
 {
     Console.WriteLine("\nNúmero da Mesa: ");
-    if (!int.TryParse(Console.ReadLine(), out int numeroMesa)) ;
+    if (!int.TryParse(Console.ReadLine(), out int numeroMesa))
     {
         Console.WriteLine("Mesa inválida");
         return;
